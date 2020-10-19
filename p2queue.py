@@ -70,17 +70,32 @@ class Queue:
     Note: we also reset the front to index 0.
     """
     def resize(self):
-        # resize queue to be double the size
-        new_length = 2*len(self.queue)
-        # initialize new array of double the size
-        B = [None for x in range(0, new_length)]
-        # fill new list with elements from original list
-        for k in range(0, len(self.queue)):
-            B[k] = self.queue[k]
+        # Unwrapping
+        if self.front > self.rear:
+            self.queue = self.queue[self.front:] + self.queue[:self.rear]
+            self.rear = len(self.queue)
+            # resize queue to be double the size
+            new_length = 2 * len(self.queue)
+            # initialize new array of double the size
+            B = [None for x in range(0, new_length)]
+            # fill new list with elements from original list
+            for k in range(0, len(self.queue)):
+                B[k] = self.queue[k]
+                # reset the queue and the front
+            self.queue = B
+            self.front = 0
+        elif self.front < self.rear:
+            # resize queue to be double the size
+            new_length = 2*len(self.queue)
+            # initialize new array of double the size
+            B = [None for x in range(0, new_length)]
+            # fill new list with elements from original list
+            for k in range(0, len(self.queue)):
+                B[k] = self.queue[k]
 
-        # reset the queue and the front
-        self.queue = B
-        self.front = 0
+            # reset the queue and the front
+            self.queue = B
+            self.front = 0
         return
 
     """
@@ -90,29 +105,34 @@ class Queue:
         # As long as the rear is not at the end of queue
         # then push value to the rear of queue
         # and update rear and numElems
-        if self.rear < len(self.queue):
-            self.queue[self.rear] = val
-            self.rear += 1
-            self.numElems += 1
-        # Otherwise resize then push value to rear of queue
-        # and update numElems
-        else:
+        if self.isFull() is True:
             self.resize()
+            self.rear += 1
+            self.queue[self.rear] = val
+            self.numElems += 1
+
+        elif self.isFull() is False:
+            self.rear = self.rear % len(self.queue)
             self.queue[self.rear] = val
             self.rear += 1
             self.numElems += 1
+
         return
 
     """
     pop function to pop the value from the front of the queue.
     """
     def pop(self):
+        # check if front is at the end of list and resize if so
+        if self.front == len(self.queue) - 1:
+            self.resize()
         # remove value from front of the queue
         # update front and numElems
         self.queue[self.front] = None
         self.front += 1
         self.numElems -= 1
-        return None
+
+        return
 
 # Check
 q = Queue()
@@ -122,6 +142,9 @@ q.push(3)
 q.pop()
 q.pop()
 q.push(2)
+q.pop()
+q.pop()
+q.push(1)
 print(q)
 print(q.resize())
 print(q.isFull())
