@@ -10,11 +10,6 @@ Partner 2:
 Date:
 """
 
-"""
-Stack Class
-"""
-
-
 class Stack:
     """
     Class attributes:
@@ -87,7 +82,7 @@ class Stack:
 
         self.stack[self.numElems] = val
         self.numElems += 1
-        self.top = val
+        self.top += 1
         return
 
     """
@@ -100,11 +95,7 @@ class Stack:
             out = self.stack[self.numElems - 1]
             self.stack[self.numElems - 1] = None
             self.numElems -= 1
-
-            if self.numElems == 0:
-                self.top = -1
-            else:
-                self.top = self.stack[self.numElems - 1]
+            self.top -= 1
 
             return out
         return
