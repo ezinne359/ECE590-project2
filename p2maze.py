@@ -446,3 +446,7 @@ def getMaze(mazeNum=0, numRooms=12):
         raise Exception('Input mazeNum not valid!')
 
     return maze
+
+
+m = Maze()
+print(m.adjList)

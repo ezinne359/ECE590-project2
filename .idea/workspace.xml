@@ -21,7 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="df3d523a-462a-499f-b580-4ae4da07c6f0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/p2maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/p2maze.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/p2queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/p2queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2.py" beforeDir="false" afterPath="$PROJECT_DIR$/project2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +50,28 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ComputerVisionProjects" />
   </component>
-  <component name="RunManager" selected="Python.p2queue">
+  <component name="RunManager" selected="Python.project2">
+    <configuration name="p2maze" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Project2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/p2maze.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="p2queue" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Project2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -62,6 +85,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/p2queue.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="project2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Project2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -93,7 +137,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.project2" />
         <item itemvalue="Python.p2queue" />
+        <item itemvalue="Python.p2maze" />
         <item itemvalue="Python.scratch" />
       </list>
     </recent_temporary>
@@ -133,30 +179,58 @@
       <screen x="0" y="23" width="1440" height="822" />
     </state>
     <state x="573" y="331" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.23.1440.822@0.23.1440.822" timestamp="1603037015546" />
-    <state width="1419" height="212" key="GridCell.Tab.0.bottom" timestamp="1603069594106">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1419" height="198" key="GridCell.Tab.0.bottom" timestamp="1603381734939">
+      <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="1419" height="212" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603069594106" />
+    <state width="929" height="198" key="GridCell.Tab.0.bottom/-1920.-102.1920.1080/0.0.1440.900@-1920.-102.1920.1080" timestamp="1603255434833" />
+    <state width="1510" height="198" key="GridCell.Tab.0.bottom/-1920.-79.1920.991/0.23.1440.877@-1920.-79.1920.991" timestamp="1603218297005" />
+    <state width="1510" height="198" key="GridCell.Tab.0.bottom/-1920.-79.1920.996/0.23.1440.877@-1920.-79.1920.996" timestamp="1603251390118" />
+    <state width="1419" height="212" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603078672676" />
+    <state width="1419" height="198" key="GridCell.Tab.0.bottom/0.23.1440.816@0.23.1440.816" timestamp="1603381734939" />
     <state width="1088" height="212" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1603044044491" />
     <state width="1088" height="212" key="GridCell.Tab.0.bottom/0.23.1440.827@0.23.1440.827" timestamp="1603050416616" />
-    <state width="1419" height="212" key="GridCell.Tab.0.center" timestamp="1603069594104">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1419" height="198" key="GridCell.Tab.0.bottom/0.23.1440.831@0.23.1440.831" timestamp="1603320326225" />
+    <state width="1419" height="198" key="GridCell.Tab.0.bottom/0.23.1440.832@0.23.1440.832" timestamp="1603296047981" />
+    <state width="1419" height="198" key="GridCell.Tab.0.bottom/0.23.1440.833@0.23.1440.833" timestamp="1603327226300" />
+    <state width="1419" height="198" key="GridCell.Tab.0.center" timestamp="1603381734939">
+      <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="1419" height="212" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603069594104" />
+    <state width="929" height="198" key="GridCell.Tab.0.center/-1920.-102.1920.1080/0.0.1440.900@-1920.-102.1920.1080" timestamp="1603255434831" />
+    <state width="1510" height="198" key="GridCell.Tab.0.center/-1920.-79.1920.991/0.23.1440.877@-1920.-79.1920.991" timestamp="1603218297004" />
+    <state width="1510" height="198" key="GridCell.Tab.0.center/-1920.-79.1920.996/0.23.1440.877@-1920.-79.1920.996" timestamp="1603251390117" />
+    <state width="1419" height="212" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603078672675" />
+    <state width="1419" height="198" key="GridCell.Tab.0.center/0.23.1440.816@0.23.1440.816" timestamp="1603381734939" />
     <state width="1088" height="212" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1603044044490" />
     <state width="1088" height="212" key="GridCell.Tab.0.center/0.23.1440.827@0.23.1440.827" timestamp="1603050416615" />
-    <state width="1419" height="212" key="GridCell.Tab.0.left" timestamp="1603069594104">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1419" height="198" key="GridCell.Tab.0.center/0.23.1440.831@0.23.1440.831" timestamp="1603320326225" />
+    <state width="1419" height="198" key="GridCell.Tab.0.center/0.23.1440.832@0.23.1440.832" timestamp="1603296047980" />
+    <state width="1419" height="198" key="GridCell.Tab.0.center/0.23.1440.833@0.23.1440.833" timestamp="1603327226300" />
+    <state width="1419" height="198" key="GridCell.Tab.0.left" timestamp="1603381734939">
+      <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="1419" height="212" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603069594104" />
+    <state width="929" height="198" key="GridCell.Tab.0.left/-1920.-102.1920.1080/0.0.1440.900@-1920.-102.1920.1080" timestamp="1603255434830" />
+    <state width="1510" height="198" key="GridCell.Tab.0.left/-1920.-79.1920.991/0.23.1440.877@-1920.-79.1920.991" timestamp="1603218297003" />
+    <state width="1510" height="198" key="GridCell.Tab.0.left/-1920.-79.1920.996/0.23.1440.877@-1920.-79.1920.996" timestamp="1603251390116" />
+    <state width="1419" height="212" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603078672674" />
+    <state width="1419" height="198" key="GridCell.Tab.0.left/0.23.1440.816@0.23.1440.816" timestamp="1603381734939" />
     <state width="1088" height="212" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1603044044489" />
     <state width="1088" height="212" key="GridCell.Tab.0.left/0.23.1440.827@0.23.1440.827" timestamp="1603050416615" />
-    <state width="1419" height="212" key="GridCell.Tab.0.right" timestamp="1603069594105">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1419" height="198" key="GridCell.Tab.0.left/0.23.1440.831@0.23.1440.831" timestamp="1603320326224" />
+    <state width="1419" height="198" key="GridCell.Tab.0.left/0.23.1440.832@0.23.1440.832" timestamp="1603296047979" />
+    <state width="1419" height="198" key="GridCell.Tab.0.left/0.23.1440.833@0.23.1440.833" timestamp="1603327226299" />
+    <state width="1419" height="198" key="GridCell.Tab.0.right" timestamp="1603381734939">
+      <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state width="1419" height="212" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603069594105" />
+    <state width="929" height="198" key="GridCell.Tab.0.right/-1920.-102.1920.1080/0.0.1440.900@-1920.-102.1920.1080" timestamp="1603255434832" />
+    <state width="1510" height="198" key="GridCell.Tab.0.right/-1920.-79.1920.991/0.23.1440.877@-1920.-79.1920.991" timestamp="1603218297004" />
+    <state width="1510" height="198" key="GridCell.Tab.0.right/-1920.-79.1920.996/0.23.1440.877@-1920.-79.1920.996" timestamp="1603251390117" />
+    <state width="1419" height="212" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603078672675" />
+    <state width="1419" height="198" key="GridCell.Tab.0.right/0.23.1440.816@0.23.1440.816" timestamp="1603381734939" />
     <state width="1088" height="212" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1603044044490" />
     <state width="1088" height="212" key="GridCell.Tab.0.right/0.23.1440.827@0.23.1440.827" timestamp="1603050416616" />
+    <state width="1419" height="198" key="GridCell.Tab.0.right/0.23.1440.831@0.23.1440.831" timestamp="1603320326225" />
+    <state width="1419" height="198" key="GridCell.Tab.0.right/0.23.1440.832@0.23.1440.832" timestamp="1603296047980" />
+    <state width="1419" height="198" key="GridCell.Tab.0.right/0.23.1440.833@0.23.1440.833" timestamp="1603327226300" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
