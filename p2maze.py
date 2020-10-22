@@ -18,9 +18,8 @@ from p2wilson import *
 """
 Vertex Class
 """
-
-
 class Vertex:
+
     """
     Class attributes:
 
@@ -34,20 +33,19 @@ class Vertex:
     """
     __init__ function to initialize the vertex.
     """
-
     def __init__(self, rank):
-        self.rank = rank  # Set the rank of this vertex.
-        self.neigh = []  # Set the input neighbors.
-        self.dist = math.inf  # Infinite dist initially.
-        self.visited = False  # Nothing visited at initialization.
-        self.prev = None  # No previous node on path yet.
+
+        self.rank = rank     # Set the rank of this vertex.
+        self.neigh = []      # Set the input neighbors.
+        self.dist = math.inf # Infinite dist initially.
+        self.visited = False # Nothing visited at initialization.
+        self.prev = None     # No previous node on path yet.
         return
 
     """
     __repr__ function to print a vertex.
     Note: only prints the rank!
     """
-
     def __repr__(self):
         return '%d' % self.rank
 
@@ -55,19 +53,16 @@ class Vertex:
     isEqual function compares this Vertex to an input Vertex object.
     Note: only needs to compare the rank!
     """
-
-    def isEqual(self, vertex):
+    def isEqual(self,vertex):
         return self.rank == vertex.rank
-
 
 ################################################################################
 
 """
 Maze Class
 """
-
-
 class Maze:
+
     """
     Class attributes:
 
@@ -89,7 +84,6 @@ class Maze:
     numRooms:  if mazeNum=4, then set the size of the maze, which will
                be 2*numRooms+1.
     """
-
     def __init__(self, mazeNum=0, verbosity=False, numRooms=12):
 
         # Select the maze to use.
@@ -97,7 +91,7 @@ class Maze:
 
         # Create an adjacency list of empty vertices.
         self.adjList = [Vertex(r) for r in \
-                        range(0, len(self.maze) * len(self.maze[0]))]
+                        range(0,len(self.maze)*len(self.maze[0]))]
 
         # Initialize the adjacency matrix to have no edges yet.
         self.adjMat = [[0 for x in self.adjList] for y in self.adjList]
@@ -106,69 +100,69 @@ class Maze:
         # In this loop, maze[r][c] will correspond to vertex rank:
         #     r*len(maze[0])+c
         # Note: we skip the first and last row/col.
-        for r in range(1, len(self.maze) - 1):
-            for c in range(1, len(self.maze[r]) - 1):
+        for r in range(1,len(self.maze)-1):
+            for c in range(1,len(self.maze[r])-1):
                 # Note that maze[r][c] will now be a 0 or a 1.
                 # If it is 0, then open space and needs adjacency.
                 # If it is 1, then wall and no adjacency.
                 if self.maze[r][c] == 0:
                     # If up is open, it is a neighbor.
-                    if self.maze[r - 1][c] == 0:
+                    if self.maze[r-1][c] == 0:
                         # Append the neighbor to the neigh list.
-                        self.adjList[r * len(self.maze[0]) + c].neigh.append( \
-                            self.adjList[(r - 1) * len(self.maze[0]) + c])
+                        self.adjList[r*len(self.maze[0])+c].neigh.append(\
+                            self.adjList[(r-1)*len(self.maze[0])+c])
 
                         # Update the correct entry in the adjMat.
-                        self.adjMat[r * len(self.maze[0]) + c] \
-                            [(r - 1) * len(self.maze[0]) + c] = 1
+                        self.adjMat[r*len(self.maze[0])+c]\
+                                   [(r-1)*len(self.maze[0])+c] = 1
 
                     # If down is open, it is a neighbor.
-                    if self.maze[r + 1][c] == 0:
+                    if self.maze[r+1][c] == 0:
                         # Append the neighbor to the neigh list.
-                        self.adjList[r * len(self.maze[0]) + c].neigh.append( \
-                            self.adjList[(r + 1) * len(self.maze[0]) + c])
+                        self.adjList[r*len(self.maze[0])+c].neigh.append(\
+                            self.adjList[(r+1)*len(self.maze[0])+c])
 
                         # Update the correct entry in the adjMat.
-                        self.adjMat[r * len(self.maze[0]) + c] \
-                            [(r + 1) * len(self.maze[0]) + c] = 1
+                        self.adjMat[r*len(self.maze[0])+c]\
+                                   [(r+1)*len(self.maze[0])+c] = 1
 
                     # If left is open, it is a neighbor.
-                    if self.maze[r][c - 1] == 0:
+                    if self.maze[r][c-1] == 0:
                         # Append the neighbor to the neigh list.
-                        self.adjList[r * len(self.maze[0]) + c].neigh.append( \
-                            self.adjList[r * len(self.maze[0]) + c - 1])
+                        self.adjList[r*len(self.maze[0])+c].neigh.append(\
+                            self.adjList[r*len(self.maze[0])+c-1])
 
                         # Update the correct entry in the adjMat.
-                        self.adjMat[r * len(self.maze[0]) + c] \
-                            [r * len(self.maze[0]) + c - 1] = 1
+                        self.adjMat[r*len(self.maze[0])+c]\
+                                   [r*len(self.maze[0])+c-1] = 1
 
                     # If right is open, it is a neighbor.
-                    if self.maze[r][c + 1] == 0:
+                    if self.maze[r][c+1] == 0:
                         # Append the neighbor to the neigh list.
-                        self.adjList[r * len(self.maze[0]) + c].neigh.append( \
-                            self.adjList[r * len(self.maze[0]) + c + 1])
+                        self.adjList[r*len(self.maze[0])+c].neigh.append(\
+                            self.adjList[r*len(self.maze[0])+c+1])
 
                         # Update the correct entry in the adjMat.
-                        self.adjMat[r * len(self.maze[0]) + c] \
-                            [r * len(self.maze[0]) + c + 1] = 1
+                        self.adjMat[r*len(self.maze[0])+c]\
+                                   [r*len(self.maze[0])+c+1] = 1
 
         # Find the start in the top row and exit in the bottom row.
         # Update their info in the adjList and adjMat.
         # Note: start's only neighbor is down and exit's is up.
-        for ind in range(0, len(self.maze[0])):
+        for ind in range(0,len(self.maze[0])):
             if self.maze[0][ind] == 0:
                 self.start = self.adjList[ind]
                 self.start.neigh = [self.adjList[ind + len(self.maze[0])]]
                 self.adjMat[ind][ind + len(self.maze[0])] = 1
                 break
-        for ind in range(0, len(self.maze[len(self.maze) - 1])):
-            if self.maze[len(self.maze) - 1][ind] == 0:
+        for ind in range(0,len(self.maze[len(self.maze)-1])):
+            if self.maze[len(self.maze)-1][ind] == 0:
                 self.exit = \
-                    self.adjList[ind + (len(self.maze) - 1) * len(self.maze[0])]
+                    self.adjList[ind + (len(self.maze)-1)*len(self.maze[0])]
                 self.exit.neigh = [self.adjList[ind + \
-                                                (len(self.maze) - 2) * len(self.maze[0])]]
-                self.adjMat[self.exit.rank] \
-                    [self.exit.rank - len(self.maze[0])] = 1
+                                   (len(self.maze)-2)*len(self.maze[0])]]
+                self.adjMat[self.exit.rank]\
+                           [self.exit.rank - len(self.maze[0])] = 1
                 break
 
         # Set the path to be empty.
@@ -181,7 +175,6 @@ class Maze:
     """
     __repr__ function to print the maze.
     """
-
     def __repr__(self):
         # Get the string.
         (warn, mp) = self.printMaze()
@@ -195,7 +188,6 @@ class Maze:
     """
     printMaze function for providing error messages and printing used in repr.
     """
-
     def printMaze(self):
         # Create the output strings.
         # mp is the string for the maze itself.
@@ -205,8 +197,8 @@ class Maze:
 
         # Loop through the rows and cols of the maze and fill in 'X' for a wall
         # and ' ' for an open space. Put line breaks between rows.
-        for r in range(0, len(self.maze)):
-            for c in range(0, len(self.maze)):
+        for r in range(0,len(self.maze)):
+            for c in range(0,len(self.maze)):
                 if self.maze[r][c] == 0:
                     mp += ' '
                 else:
@@ -217,8 +209,8 @@ class Maze:
         # Note the shift due to the line break symbols.
         # Note that each line break '\n' counts as 1 char...
         mp = mp[0:self.start.rank] + 's' + \
-             mp[self.start.rank + 1:self.exit.rank + len(self.maze) - 1] + \
-             'e' + mp[self.exit.rank + len(self.maze):]
+             mp[self.start.rank+1:self.exit.rank+len(self.maze)-1] + \
+             'e' + mp[self.exit.rank+len(self.maze):]
 
         # If the path is not empty, fill it in.
         # Check to make sure it is a correct and valid path.
@@ -231,15 +223,15 @@ class Maze:
             if self.path[0] != self.start.rank:
                 warn += 'Path does not begin at start!\n'
                 invalid = True
-                mp = mp[0:self.start.rank + self.start.rank // len(self.maze[0])] + \
+                mp = mp[0:self.start.rank+self.start.rank//len(self.maze[0])]+\
                      '!' + \
-                     mp[self.start.rank + self.start.rank // len(self.maze[0]) + 1:]
-            if self.path[len(self.path) - 1] != self.exit.rank:
+                     mp[self.start.rank+self.start.rank//len(self.maze[0])+1:]
+            if self.path[len(self.path)-1] != self.exit.rank:
                 warn += 'Path does not exit the maze!\n'
                 invalid = True
-                mp = mp[0:self.exit.rank + self.exit.rank // len(self.maze[0])] + \
+                mp = mp[0:self.exit.rank+self.exit.rank//len(self.maze[0])]+\
                      '!' + \
-                     mp[self.exit.rank + self.exit.rank // len(self.maze[0]) + 1:]
+                     mp[self.exit.rank+self.exit.rank//len(self.maze[0])+1:]
 
             # Loop through the path and fill it in.
             # Check for invalid ghosts and repeats.
@@ -248,30 +240,30 @@ class Maze:
                 if (vertex != self.start.rank) and (vertex != self.exit.rank):
                     # Check if it is a wall or opening. Fill if open.
                     # Also check if already visited.
-                    if mp[vertex + vertex // len(self.maze[0])] == 'X':
+                    if mp[vertex+vertex//len(self.maze[0])] == 'X':
                         warn += 'No ghosts! Do not walk through walls!\n'
                         invalid = True
-                        mp = mp[0:vertex + vertex // len(self.maze[0])] + 'G' + \
-                             mp[vertex + vertex // len(self.maze[0]) + 1:]
-                    elif mp[vertex + vertex // len(self.maze[0])] == 'o':
+                        mp = mp[0:vertex+vertex//len(self.maze[0])] + 'G' + \
+                             mp[vertex+vertex//len(self.maze[0])+1:]
+                    elif mp[vertex+vertex//len(self.maze[0])] == 'o':
                         warn += 'You have already been to this vertex...\n'
                         invalid = True
-                        mp = mp[0:vertex + vertex // len(self.maze[0])] + 'R' + \
-                             mp[vertex + vertex // len(self.maze[0]) + 1:]
-                    elif mp[vertex + vertex // len(self.maze[0])] == 'G':
+                        mp = mp[0:vertex+vertex//len(self.maze[0])] + 'R' + \
+                             mp[vertex+vertex//len(self.maze[0])+1:]
+                    elif mp[vertex+vertex//len(self.maze[0])] == 'G':
                         warn += 'Repeated ghosts!\n'
-                    elif mp[vertex + vertex // len(self.maze[0])] == 'R':
+                    elif mp[vertex+vertex//len(self.maze[0])] == 'R':
                         warn += 'Repeating again!\n'
 
                     else:
-                        mp = mp[0:vertex + vertex // len(self.maze[0])] + 'o' + \
-                             mp[vertex + vertex // len(self.maze[0]) + 1:]
+                        mp = mp[0:vertex+vertex//len(self.maze[0])] + 'o' + \
+                             mp[vertex+vertex//len(self.maze[0])+1:]
 
             # Loop through the path to make sure that each neighbor is actually
             # a neighbor...
-            for vInd in range(0, len(self.path) - 1):
-                if (self.adjMat[self.path[vInd]][self.path[vInd + 1]] != 1) \
-                        and (self.path[vInd] != self.path[vInd + 1]):
+            for vInd in range(0,len(self.path)-1):
+                if (self.adjMat[self.path[vInd]][self.path[vInd+1]] != 1) \
+                   and (self.path[vInd] != self.path[vInd+1]):
                     warn += 'Not a neighbor! You cannot teleport!\n'
                     invalid = True
 
@@ -287,7 +279,6 @@ class Maze:
     printList function for cleanly printing the adjaceny list.
     Note: skips vertices with no neighbors.
     """
-
     def printList(self):
         for vertex in self.adjList:
             if len(vertex.neigh) > 0:
@@ -301,7 +292,6 @@ class Maze:
     printMat function for cleanly printing the adjaceny matrix.
     Note: for the larger mazes, this will still likely be hard to read.
     """
-
     def printMat(self):
         for row in self.adjMat:
             print(row)
@@ -311,14 +301,13 @@ class Maze:
     plot_maze_solution function for cleanly plotting your final path.
     Note: set plotting to False to supress figure generation.
     """
-
     def plot_maze_solution(self, plotting=True):
         if self.verb == False:
             return
         (warn, mp) = self.printMaze()
         np_mz = []
         row_mz = []
-        possible_value = ['X', ' ', 'o', 's', 'e', 'G', 'R']
+        possible_value = ['X',' ','o','s','e','G','R']
         for i in mp:
             if i == '\n':
                 np_mz += [row_mz]
@@ -326,7 +315,7 @@ class Maze:
                 continue
             if i == '!':
                 i = 'e'
-            row_mz += [possible_value.index(i) / 6.]
+            row_mz += [possible_value.index(i)/6.]
         viridis = cm.get_cmap('viridis', 6)
         newcolors = viridis(np.linspace(0, 1, 6))
         newcolors[0, :] = np.array([0, 0, 1, 1])
@@ -335,7 +324,7 @@ class Maze:
         newcolors[4, :] = np.array([0, 1, 0, 1])
         newcolors[5, :] = np.array([1, 0, 0, 1])
         newcmp = ListedColormap(newcolors)
-        plt.figure(figsize=(4, 4))
+        plt.figure(figsize=(4,4))
         fig = plt.imshow(np_mz, cmap=newcmp)
         fig.axes.get_xaxis().set_visible(False)
         fig.axes.get_yaxis().set_visible(False)
@@ -347,7 +336,6 @@ class Maze:
     Note: set verbosity to False to supress printing out the resulting maze/path.
     Note: set plotting to False to supress figure generation.
     """
-
     def solve(self, alg, verbosity=True, plotting=True):
         self.path = bdfs(self, alg)
         if len(self.path) == 0:
@@ -356,7 +344,6 @@ class Maze:
         print(self)
         self.plot_maze_solution(plotting)
         return
-
 
 ################################################################################
 
@@ -372,75 +359,83 @@ numRooms: the number of rooms in the maze, only for mazeNum=4
 OUTPUTS
 maze: a 2D list representing the maze
 """
-
-
 def getMaze(mazeNum=0, numRooms=12):
     # Select the maze to use.
     if mazeNum == 0:
-        maze = [[1, 1, 0, 1, 1], \
-                [1, 0, 0, 0, 1], \
-                [1, 0, 0, 0, 1], \
-                [1, 0, 0, 0, 1], \
-                [1, 1, 0, 1, 1], ]
+        maze = [[1,1,0,1,1],\
+                [1,0,0,0,1],\
+                [1,0,0,0,1],\
+                [1,0,0,0,1],\
+                [1,1,0,1,1],]
     elif mazeNum == 1:
-        maze = [[1, 1, 0, 1, 1], \
-                [1, 0, 0, 0, 1], \
-                [1, 0, 1, 1, 1], \
-                [1, 0, 0, 0, 1], \
-                [1, 1, 0, 1, 1], ]
+        maze = [[1,1,0,1,1],\
+                [1,0,0,0,1],\
+                [1,0,1,1,1],\
+                [1,0,0,0,1],\
+                [1,1,0,1,1],]
     elif mazeNum == 2:
-        maze = [[1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], \
-                [1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1], \
-                [1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1], \
-                [1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1], \
-                [1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1], \
-                [1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1], \
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1], \
-                [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1], \
-                [1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1], \
-                [1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1], \
-                [1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1], \
-                [1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1], \
-                [1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1], \
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1], \
-                [1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1], \
-                [1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1], \
-                [1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1], \
-                [1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1], \
-                [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1], \
-                [1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1], \
-                [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+        maze = [[1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],\
+                [1,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1,0,1],\
+                [1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,0,1],\
+                [1,1,0,1,0,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,0,1],\
+                [1,0,0,1,0,0,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,0,1,0,1],\
+                [1,0,1,1,1,0,1,1,1,1,0,1,0,1,0,1,0,1,0,1,1,0,0,0,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1],\
+                [1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,0,0,1,0,0,0,1],\
+                [1,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,1,0,1,0,1,1,1],\
+                [1,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,0,0,1,0,1,0,0,0,1],\
+                [1,1,0,1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,1,0,1,0,1,0,1],\
+                [1,1,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,1,1,1,0,1],\
+                [1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,0,0,0,0,0,1],\
+                [1,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,1,0,1,1,1,0,1,0,1],\
+                [1,0,1,1,1,1,1,1,0,1,0,0,1,1,1,0,1,0,0,0,1,0,1,0,1],\
+                [1,0,0,0,0,0,0,0,0,1,0,1,1,0,1,0,1,1,1,0,1,0,1,0,1],\
+                [1,1,1,1,1,1,1,1,1,1,0,1,0,0,1,0,0,0,1,0,1,0,1,0,1],\
+                [1,0,0,0,0,1,0,0,0,1,1,1,0,1,1,1,1,0,1,0,1,0,1,0,1],\
+                [1,0,1,1,0,1,0,1,0,0,0,0,0,0,0,0,1,0,1,0,1,1,1,0,1],\
+                [1,0,0,1,0,1,0,1,1,1,1,1,0,1,1,0,1,0,1,0,1,0,1,0,1],\
+                [1,0,1,1,0,1,0,1,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1],\
+                [1,0,1,0,0,1,0,1,0,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1],\
+                [1,0,1,1,1,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,1,1],\
+                [1,0,0,0,0,0,0,1,0,1,1,1,0,1,0,0,0,1,1,1,0,0,0,1,1],\
+                [1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
     elif mazeNum == 3:
-        maze = [[1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1], \
-                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], \
-                [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+        maze = [[1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],\
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],\
+                [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
     elif mazeNum == 4:
+        maze = [[1,1,1,1,0,1,1,1,1],\
+                [1,0,0,0,0,0,0,0,1],\
+                [1,0,0,0,1,0,0,0,1],\
+                [1,0,0,0,0,0,0,0,1],\
+                [1,0,0,1,0,1,0,0,1],\
+                [1,0,1,1,0,1,1,0,1],\
+                [1,0,1,1,0,1,1,0,1],\
+                [1,0,0,0,0,0,0,0,1],\
+                [1,1,1,1,0,1,1,1,1]]
+    elif mazeNum == 5:
         maze = createRandMaze(numRooms)
     else:
         raise Exception('Input mazeNum not valid!')
