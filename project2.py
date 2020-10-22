@@ -5,9 +5,9 @@ Fall 2020
 
 project2.py
 
-Partner 1:
-Partner 2:
-Date:
+Partner 1: George Lindner
+Partner 2: Ezinne Nwankwo
+Date: 10/22/20
 """
 
 # Import math and other p2 files.
